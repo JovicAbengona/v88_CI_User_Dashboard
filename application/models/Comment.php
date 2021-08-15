@@ -22,7 +22,7 @@
         }
 
         public function getComments($id){
-            $this->db->select("c.message_id AS 'message_id', c.id AS 'comment_id', c.user_id AS 'sender_id', CONCAT(u_2.first_name, ' ', u_2.last_name) AS 'sender', c.content, TIMESTAMPDIFF(SECOND, c.created_at, NOW()) AS 'sent'");
+            $this->db->select("c.message_id AS 'message_id', c.id AS 'comment_id', c.user_id AS 'sender_id', CONCAT(u_2.first_name, ' ', u_2.last_name) AS 'sender', c.content, c.created_at, TIMESTAMPDIFF(SECOND, c.created_at, NOW()) AS 'sent'");
             $this->db->from("users AS u");
             $this->db->join("profiles AS p", "u.id = p.user_id");
             $this->db->join("messages AS m", "p.id = m.profile_id");
